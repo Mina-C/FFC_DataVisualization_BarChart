@@ -1,7 +1,27 @@
 * {
   text-align: center;
+  background-color: #778ca3;
 }
 
-svg {
-  background-color: pink;
+.container{
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+  border: 1px black solid;
+  box-shadow: 1px 1px 20px .5px black;
+  background-color: white;
+}
+
+#graph, #title {
+  background-color: white;
+  margin: 10px 0 0 0;
+}
+
+svg{
+  background-color: lightgray;
+  margin: 10px 0 20px 0;
+}
+
+.bar:hover {
+  fill: white;
 }
