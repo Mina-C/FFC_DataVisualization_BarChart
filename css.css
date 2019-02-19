@@ -2,14 +2,22 @@
   text-align: center;
   background-color: #778ca3;
 }
-
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
 .container{
   display: flex;
   flex-direction: column;
-  margin: 50px;
+  padding: 0 50px;
   border: 1px black solid;
   box-shadow: 1px 1px 20px .5px black;
   background-color: white;
+  height: 580;
+  width: 1300;
 }
 
 #graph, #title {
@@ -17,11 +25,22 @@
   margin: 10px 0 0 0;
 }
 
+#tooltip{
+  background-color: lightsteelblue;
+  opacity: 0;
+  font-size: 1em;
+  position: absolute;
+  border-radius: 5px;
+  padding: 5px;
+  pointer-event: none;
+  width: 120px;
+}
+
 svg{
-  background-color: lightgray;
+  background-color: white;
   margin: 10px 0 20px 0;
 }
 
 .bar:hover {
-  fill: white;
+  fill: skyblue;
 }
