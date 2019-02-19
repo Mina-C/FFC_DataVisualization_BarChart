@@ -44,6 +44,10 @@ d3.json("https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
         .attr('width', w).attr('height', h)
         /*.attr('id', 'graph')*/;
   
+  const tooltip = d3.select("#graph").append('div')
+        .attr('id', 'tooltip')
+        .attr('opacity', 0);
+  
   svg.selectAll('rect').data(dataset).enter().append('rect')
         .attr('x', (d,i) => padding + i*rectWid)
         .attr('y', (d,i) => yScale(d[1]))
@@ -52,13 +56,18 @@ d3.json("https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
         .attr("fill", "blue")
         .attr('class', 'bar')
         .attr('data-date', (d, i) => dataset[i][0])
-        .attr('data-gdp', (d, i) => dataset[i][1]);
-  
-  svg.append('title')
-        .text((d,i) => barDate[i] + ' : ' + barGdp[i])
-        .attr('data-date', (d, i) => dataset[i][0])
-        .attr("id", "tooltip");
-  
+        .attr('data-gdp', (d, i) => dataset[i][1])
+        .on('mouseover', function(d, i){
+          tooltip.transition().duration(200).style('opacity', 0.9);
+          tooltip.html(barDate[i] + "<br/>" + barGdp[i])
+            .attr('data-date', dataset[i][0])
+            .style('left', (rectWid * i)  + 0 + 'px')
+            .style('top', '400px');
+        })
+        .on('mouseout', function(d,i){
+          tooltip.transition().duration(500).style('opacity', 0);
+        });
+    
   const yAxis = d3.axisLeft(yScale);
   svg.append('g')
       .attr('transform', "translate(" + padding + ",0)")
